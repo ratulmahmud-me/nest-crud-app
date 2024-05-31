@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post, Put } from "@nestjs/common";
 import { BookService } from "./book.service";
 import { Book } from "./dto/book.dto";
 
@@ -22,7 +22,7 @@ export class BookController {
     }
 
     @Delete("/delete/:id")
-    deleteBook(@Param("id") bookId: string): string {
+    deleteBook(@Param("id", ParseUUIDPipe) bookId: string): string {
         return this.bookService.deleteBookService(bookId);
     }
 }
